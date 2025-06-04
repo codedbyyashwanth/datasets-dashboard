@@ -2,7 +2,7 @@
 import { NavLink } from 'react-router-dom'
 import { Upload, BarChart3, MessageSquare, X } from 'lucide-react'
 import { Button } from '../ui/button'
-import { cn } from '../../lib/utils'
+import { cn } from '@/lib/utils'
 
 const navigation = [
   { name: 'Upload Data', href: '/upload', icon: Upload },

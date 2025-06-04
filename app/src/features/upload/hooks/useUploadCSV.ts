@@ -1,8 +1,8 @@
 // Custom hook for CSV upload functionality
 import { useState, useCallback } from 'react'
 import { useDispatch } from 'react-redux'
-import { startUpload, uploadSuccess, uploadError, updateProgress } from '../../../store/slices/uploadSlice'
-import { parseCSV } from '../../../lib/utils'
+import { startUpload, uploadSuccess, uploadError, updateProgress } from '@/store/slices/uploadSlice'
+import { parseCSV } from '@/lib/utils'
 
 export function useUploadCSV() {
   const dispatch = useDispatch()

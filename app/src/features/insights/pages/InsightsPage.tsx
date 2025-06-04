@@ -1,12 +1,12 @@
 // Main insights page component
 import { useSelector } from 'react-redux'
 import { MessageSquare, Brain, TrendingUp } from 'lucide-react'
-import { Button } from '../../../components/ui/button'
-import { Card, CardContent, CardHeader, CardTitle } from '../../../components/ui/card'
-import { Tabs, TabsContent, TabsList, TabsTrigger } from '../../../components/ui/tabs'
+import { Button } from '@/components/ui/button'
+import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
+import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs'
 import { ChatInterface } from '../components/ChatInterface'
 import { InsightsDisplay } from '../components/InsightsDisplay'
-import type { RootState } from '../../../store'
+import type { RootState } from '@/store'
 
 export default function InsightsPage() {
   const { files } = useSelector((state: RootState) => state.upload)

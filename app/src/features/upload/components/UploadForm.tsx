@@ -2,12 +2,12 @@
 import { useRef } from 'react'
 import { useSelector } from 'react-redux'
 import { Upload, FileText, X } from 'lucide-react'
-import { Button } from '../../../components/ui/button'
-import { Progress } from '../../../components/ui/progress'
-import { Card, CardContent } from '../../../components/ui/card'
+import { Button } from '@/components/ui/button'
+import { Progress } from '@/components/ui/progress'
+import { Card, CardContent } from '@/components/ui/card'
 import { useUploadCSV } from '../hooks/useUploadCSV'
-import type { RootState } from '../../../store'
-import { cn } from '../../../lib/utils'
+import type { RootState } from '@/store'
+import { cn } from '@/lib/utils'
 
 export function UploadForm() {
   const fileInputRef = useRef<HTMLInputElement>(null)

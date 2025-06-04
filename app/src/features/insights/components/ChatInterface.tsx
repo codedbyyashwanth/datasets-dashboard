@@ -1,12 +1,12 @@
 // Responsive chat interface
 import { useState, useRef, useEffect } from 'react'
 import { Send, Bot, User } from 'lucide-react'
-import { Button } from '../../../components/ui/button'
-import { Input } from '../../../components/ui/input'
-import { Card, CardContent } from '../../../components/ui/card'
-import { Badge } from '../../../components/ui/badge'
+import { Button } from '@/components/ui/button'
+import { Input } from '@/components/ui/input'
+import { Card, CardContent } from '@/components/ui/card'
+import { Badge } from '@/components/ui/badge'
 import { useAskAI } from '../hooks/useAskAI'
-import { cn } from '../../../lib/utils'
+import { cn } from '@/lib/utils'
 
 export function ChatInterface() {
   const [inputValue, setInputValue] = useState('')

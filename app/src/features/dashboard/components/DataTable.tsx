@@ -1,9 +1,9 @@
 // Responsive data table with horizontal scroll on mobile
 import { useState, useMemo } from 'react'
 import { ChevronLeft, ChevronRight, Search } from 'lucide-react'
-import { Button } from '../../../components/ui/button'
-import { Input } from '../../../components/ui/input'
-import { Card, CardContent, CardHeader, CardTitle } from '../../../components/ui/card'
+import { Button } from '@/components/ui/button'
+import { Input } from '@/components/ui/input'
+import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
 import {
   Table,
   TableBody,
@@ -11,7 +11,7 @@ import {
   TableHead,
   TableHeader,
   TableRow,
-} from '../../../components/ui/table'
+} from '@/components/ui/table'
 
 interface DataTableProps {
   data: Record<string, any>[]

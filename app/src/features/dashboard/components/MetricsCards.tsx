@@ -1,7 +1,7 @@
 // Responsive metrics cards with better mobile layout
 import { TrendingUp, TrendingDown, DollarSign, PieChart } from 'lucide-react'
-import { Card, CardContent, CardHeader, CardTitle } from '../../../components/ui/card'
-import { formatCurrency, formatNumber } from '../../../lib/utils'
+import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
+import { formatCurrency, formatNumber } from '@/lib/utils'
 import type { DashboardMetrics } from '../types'
 
 interface MetricsCardsProps {

@@ -1,8 +1,8 @@
 // Display component for insights and recommendations
 import { TrendingUp, TrendingDown, AlertCircle, Lightbulb } from 'lucide-react'
-import { Card, CardContent, CardHeader, CardTitle } from '../../../components/ui/card'
-import { Badge } from '../../../components/ui/badge'
-import { Progress } from '../../../components/ui/progress'
+import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
+import { Badge } from '@/components/ui/badge'
+import { Progress } from '@/components/ui/progress'
 
 interface Insight {
   id: string

@@ -1,12 +1,12 @@
 // Responsive upload page
 import { useSelector, useDispatch } from 'react-redux'
 import { FileText, Trash2, Download } from 'lucide-react'
-import { Button } from '../../../components/ui/button'
-import { Card, CardContent, CardHeader, CardTitle } from '../../../components/ui/card'
+import { Button } from '@/components/ui/button'
+import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
 import { UploadForm } from '../components/UploadForm'
-import type { RootState } from '../../../store'
-import { removeFile } from '../../../store/slices/uploadSlice'
-import { formatNumber } from '../../../lib/utils'
+import type { RootState } from '@/store'
+import { removeFile } from '@/store/slices/uploadSlice'
+import { formatNumber } from '@/lib/utils'
 
 export default function UploadPage() {
   const dispatch = useDispatch()

@@ -1,22 +1,22 @@
 // Responsive dashboard page
 import { useState } from 'react'
 import { Plus, BarChart3, LineChart, PieChart, ScatterChart } from 'lucide-react'
-import { Button } from '../../../components/ui/button'
-import { Card, CardContent, CardHeader, CardTitle } from '../../../components/ui/card'
+import { Button } from '@/components/ui/button'
+import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
 import {
   Select,
   SelectContent,
   SelectItem,
   SelectTrigger,
   SelectValue,
-} from '../../../components/ui/select'
+} from '@/components/ui/select'
 import {
   Dialog,
   DialogContent,
   DialogHeader,
   DialogTitle,
   DialogTrigger,
-} from '../../../components/ui/dialog'
+} from '@/components/ui/dialog'
 import { DataTable } from '../components/DataTable'
 import { ChartDisplay } from '../components/ChartDisplay'
 import { MetricsCards } from '../components/MetricsCards'

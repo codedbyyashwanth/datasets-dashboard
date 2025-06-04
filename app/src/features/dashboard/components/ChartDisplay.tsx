@@ -1,8 +1,8 @@
 // Chart display component using Plotly
 import { useEffect, useRef } from 'react'
 import { X } from 'lucide-react'
-import { Button } from '../../../components/ui/button'
-import { Card, CardContent, CardHeader, CardTitle } from '../../../components/ui/card'
+import { Button } from '@/components/ui/button'
+import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
 import type { ChartConfig } from '../types'
 
 interface ChartDisplayProps {

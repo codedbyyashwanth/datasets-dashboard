@@ -1,9 +1,9 @@
 // Custom hook for AI insights functionality
 import { useState, useCallback } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import type { RootState } from '../../../store'
-import { addMessage, setLoading, setError } from '../../../store/slices/insightSlice'
-import { insightService } from '../../../services/insightService'
+import type { RootState } from '@/store'
+import { addMessage, setLoading, setError } from '@/store/slices/insightSlice'
+import { insightService } from '@/services/insightService'
 
 export function useAskAI() {
   const dispatch = useDispatch()

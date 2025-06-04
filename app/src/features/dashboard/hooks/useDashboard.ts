@@ -1,9 +1,9 @@
 // Custom hook for dashboard functionality
 import { useState, useEffect, useMemo } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
-import type { RootState } from '../../../store'
-import { setActiveFile, addChart } from '../../../store/slices/dashboardSlice'
-import { chartService } from '../../../services/chartService'
+import type { RootState } from '@/store'
+import { setActiveFile, addChart } from '@/store/slices/dashboardSlice'
+import { chartService } from '@/services/chartService'
 import type { DashboardMetrics, ChartConfig } from '../types'
 
 export function useDashboard() {
