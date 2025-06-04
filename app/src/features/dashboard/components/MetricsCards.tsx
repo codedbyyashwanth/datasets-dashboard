@@ -1,4 +1,4 @@
-// Dashboard metrics display cards
+// Responsive metrics cards with better mobile layout
 import { TrendingUp, TrendingDown, DollarSign, PieChart } from 'lucide-react'
 import { Card, CardContent, CardHeader, CardTitle } from '../../../components/ui/card'
 import { formatCurrency, formatNumber } from '../../../lib/utils'
@@ -40,17 +40,19 @@ export function MetricsCards({ metrics }: MetricsCardsProps) {
   ]
 
   return (
-    <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-4">
+    <div className="grid gap-4 grid-cols-1 sm:grid-cols-2 lg:grid-cols-4">
       {cards.map((card) => (
         <Card key={card.title}>
           <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
             <CardTitle className="text-sm font-medium">
               {card.title}
             </CardTitle>
-            <card.icon className="h-4 w-4 text-muted-foreground" />
+            <card.icon className="h-4 w-4 text-muted-foreground flex-shrink-0" />
           </CardHeader>
           <CardContent>
-            <div className="text-2xl font-bold">{card.value}</div>
+            <div className="text-xl sm:text-2xl font-bold truncate" title={card.value}>
+              {card.value}
+            </div>
             <p className="text-xs text-muted-foreground">
               {card.description}
             </p>
@@ -59,11 +61,13 @@ export function MetricsCards({ metrics }: MetricsCardsProps) {
                 card.trend >= 0 ? 'text-green-600' : 'text-red-600'
               }`}>
                 {card.trend >= 0 ? (
-                  <TrendingUp className="h-3 w-3 mr-1" />
+                  <TrendingUp className="h-3 w-3 mr-1 flex-shrink-0" />
                 ) : (
-                  <TrendingDown className="h-3 w-3 mr-1" />
+                  <TrendingDown className="h-3 w-3 mr-1 flex-shrink-0" />
                 )}
-                {Math.abs(card.trend).toFixed(1)}% from last period
+                <span className="truncate">
+                  {Math.abs(card.trend).toFixed(1)}% from last period
+                </span>
               </div>
             )}
           </CardContent>

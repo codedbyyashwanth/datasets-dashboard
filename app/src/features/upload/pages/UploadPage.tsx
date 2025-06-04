@@ -1,4 +1,4 @@
-// Main upload page component
+// Responsive upload page
 import { useSelector, useDispatch } from 'react-redux'
 import { FileText, Trash2, Download } from 'lucide-react'
 import { Button } from '../../../components/ui/button'
@@ -25,7 +25,7 @@ export default function UploadPage() {
 
   return (
     <div className="space-y-6">
-      <div>
+      <div className="text-center sm:text-left">
         <h1 className="text-2xl font-bold text-gray-900">Upload Data</h1>
         <p className="text-gray-600 mt-1">
           Upload your CSV files to start analyzing your financial data
@@ -44,21 +44,22 @@ export default function UploadPage() {
               {files.map((file) => (
                 <div
                   key={file.id}
-                  className="flex items-center justify-between p-3 border rounded-lg"
+                  className="flex flex-col sm:flex-row sm:items-center sm:justify-between p-3 border rounded-lg gap-3"
                 >
-                  <div className="flex items-center space-x-3">
-                    <FileText className="h-8 w-8 text-blue-500" />
-                    <div>
-                      <p className="font-medium">{file.name}</p>
+                  <div className="flex items-center space-x-3 min-w-0 flex-1">
+                    <FileText className="h-8 w-8 text-blue-500 flex-shrink-0" />
+                    <div className="min-w-0 flex-1">
+                      <p className="font-medium truncate">{file.name}</p>
                       <p className="text-sm text-gray-600">
                         {formatFileSize(file.size)} • {formatNumber(file.data.length)} rows
                       </p>
                     </div>
                   </div>
                   
-                  <div className="flex items-center space-x-2">
+                  <div className="flex items-center space-x-2 sm:flex-shrink-0">
                     <Button variant="ghost" size="sm">
                       <Download className="h-4 w-4" />
+                      <span className="ml-1 hidden sm:inline">Download</span>
                     </Button>
                     <Button
                       variant="ghost"
@@ -66,6 +67,7 @@ export default function UploadPage() {
                       onClick={() => handleRemoveFile(file.id)}
                     >
                       <Trash2 className="h-4 w-4" />
+                      <span className="ml-1 hidden sm:inline">Remove</span>
                     </Button>
                   </div>
                 </div>

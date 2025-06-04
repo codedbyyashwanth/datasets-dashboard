@@ -1,4 +1,4 @@
-// Main dashboard page component
+// Responsive dashboard page
 import { useState } from 'react'
 import { Plus, BarChart3, LineChart, PieChart, ScatterChart } from 'lucide-react'
 import { Button } from '../../../components/ui/button'
@@ -47,10 +47,10 @@ export default function DashboardPage() {
 
   if (files.length === 0) {
     return (
-      <div className="flex flex-col items-center justify-center min-h-96 text-center">
+      <div className="flex flex-col items-center justify-center min-h-96 text-center px-4">
         <BarChart3 className="h-12 w-12 text-gray-400 mb-4" />
         <h2 className="text-xl font-semibold text-gray-900 mb-2">No Data Available</h2>
-        <p className="text-gray-600 mb-4">
+        <p className="text-gray-600 mb-4 max-w-md">
           Upload a CSV file to start creating your dashboard
         </p>
         <Button onClick={() => window.location.href = '/upload'}>
@@ -62,7 +62,8 @@ export default function DashboardPage() {
 
   return (
     <div className="space-y-6">
-      <div className="flex items-center justify-between">
+      {/* Header */}
+      <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
         <div>
           <h1 className="text-2xl font-bold text-gray-900">Dashboard</h1>
           <p className="text-gray-600 mt-1">
@@ -70,9 +71,9 @@ export default function DashboardPage() {
           </p>
         </div>
         
-        <div className="flex items-center space-x-4">
+        <div className="flex flex-col sm:flex-row gap-2 sm:gap-4">
           <Select value={activeFileId || ''} onValueChange={setActiveFileId}>
-            <SelectTrigger className="w-64">
+            <SelectTrigger className="w-full sm:w-64">
               <SelectValue placeholder="Select a dataset" />
             </SelectTrigger>
             <SelectContent>
@@ -86,12 +87,12 @@ export default function DashboardPage() {
           
           <Dialog open={isChartDialogOpen} onOpenChange={setIsChartDialogOpen}>
             <DialogTrigger asChild>
-              <Button disabled={!activeFile}>
+              <Button disabled={!activeFile} className="w-full sm:w-auto">
                 <Plus className="h-4 w-4 mr-2" />
                 Add Chart
               </Button>
             </DialogTrigger>
-            <DialogContent>
+            <DialogContent className="max-w-lg mx-4">
               <DialogHeader>
                 <DialogTitle>Create New Chart</DialogTitle>
               </DialogHeader>
@@ -178,16 +179,19 @@ export default function DashboardPage() {
 
       {activeFile && (
         <>
+          {/* Metrics Cards */}
           <MetricsCards metrics={metrics} />
           
+          {/* Charts Grid */}
           {charts.length > 0 && (
-            <div className="grid gap-6 md:grid-cols-2">
+            <div className="grid gap-6 grid-cols-1 xl:grid-cols-2">
               {charts.map((chart) => (
                 <ChartDisplay key={chart.id} chart={chart} />
               ))}
             </div>
           )}
           
+          {/* Data Table */}
           <DataTable data={activeFile.data} />
         </>
       )}

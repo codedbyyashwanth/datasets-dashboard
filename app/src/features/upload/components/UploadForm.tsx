@@ -1,4 +1,4 @@
-// File upload form with drag and drop
+// Responsive upload form
 import { useRef } from 'react'
 import { useSelector } from 'react-redux'
 import { Upload, FileText, X } from 'lucide-react'
@@ -27,10 +27,10 @@ export function UploadForm() {
 
   return (
     <Card className="w-full max-w-2xl mx-auto">
-      <CardContent className="p-6">
+      <CardContent className="p-4 sm:p-6">
         <div
           className={cn(
-            'border-2 border-dashed rounded-lg p-8 text-center transition-colors',
+            'border-2 border-dashed rounded-lg p-6 sm:p-8 text-center transition-colors',
             dragActive ? 'border-primary bg-primary/5' : 'border-gray-300',
             isUploading && 'pointer-events-none opacity-50'
           )}
@@ -39,13 +39,13 @@ export function UploadForm() {
           onDragOver={handleDrag}
           onDrop={handleDrop}
         >
-          <Upload className="mx-auto h-12 w-12 text-gray-400 mb-4" />
+          <Upload className="mx-auto h-10 w-10 sm:h-12 sm:w-12 text-gray-400 mb-4" />
           <h3 className="text-lg font-semibold mb-2">Upload your CSV file</h3>
-          <p className="text-gray-600 mb-4">
+          <p className="text-gray-600 mb-4 text-sm sm:text-base">
             Drag and drop your financial data file here, or click to browse
           </p>
           
-          <Button onClick={onButtonClick} disabled={isUploading}>
+          <Button onClick={onButtonClick} disabled={isUploading} className="w-full sm:w-auto">
             {isUploading ? 'Uploading...' : 'Choose File'}
           </Button>
           

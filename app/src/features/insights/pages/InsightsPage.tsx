@@ -6,7 +6,7 @@ import { Card, CardContent, CardHeader, CardTitle } from '../../../components/ui
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '../../../components/ui/tabs'
 import { ChatInterface } from '../components/ChatInterface'
 import { InsightsDisplay } from '../components/InsightsDisplay'
-import { RootState } from '../../../store'
+import type { RootState } from '../../../store'
 
 export default function InsightsPage() {
   const { files } = useSelector((state: RootState) => state.upload)

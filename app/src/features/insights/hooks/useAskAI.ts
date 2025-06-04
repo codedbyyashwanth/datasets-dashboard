@@ -1,7 +1,7 @@
 // Custom hook for AI insights functionality
 import { useState, useCallback } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import { RootState } from '../../../store'
+import type { RootState } from '../../../store'
 import { addMessage, setLoading, setError } from '../../../store/slices/insightSlice'
 import { insightService } from '../../../services/insightService'
 
