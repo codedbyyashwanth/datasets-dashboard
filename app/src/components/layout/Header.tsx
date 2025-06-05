@@ -29,7 +29,7 @@ export function Header({ onMenuClick }: HeaderProps) {
           </Button>
           
           <h1 className="text-lg sm:text-xl font-semibold text-gray-900">
-            Financial Analytics
+            Data Dashboard
           </h1>
         </div>
         
