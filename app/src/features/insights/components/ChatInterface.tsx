@@ -1,4 +1,4 @@
-// Responsive chat interface
+// Enhanced chat interface with chart rendering capabilities
 import { useState, useRef, useEffect } from 'react'
 import { Send, Bot, User } from 'lucide-react'
 import { Button } from '@/components/ui/button'
@@ -6,6 +6,7 @@ import { Input } from '@/components/ui/input'
 import { Card, CardContent } from '@/components/ui/card'
 import { Badge } from '@/components/ui/badge'
 import { useAskAI } from '../hooks/useAskAI'
+import { ChatMessage } from '@/components/ChatMessage'
 import { cn } from '@/lib/utils'
 
 export function ChatInterface() {
@@ -38,8 +39,10 @@ export function ChatInterface() {
   const suggestions = [
     "What are the top revenue drivers?",
     "Show me expense trends over time",
-    "Compare performance by region",
+    "Compare performance by region", 
     "What's the profit margin by product?",
+    "Create a chart showing revenue by month",
+    "Show me a breakdown of expenses by category"
   ]
 
   return (
@@ -66,48 +69,7 @@ export function ChatInterface() {
         ) : (
           <>
             {messages.map((message) => (
-              <div
-                key={message.id}
-                className={cn(
-                  'flex items-start space-x-2 sm:space-x-3',
-                  message.type === 'user' ? 'justify-end' : 'justify-start'
-                )}
-              >
-                {message.type === 'ai' && (
-                  <div className="flex-shrink-0 w-6 h-6 sm:w-8 sm:h-8 bg-primary rounded-full flex items-center justify-center">
-                    <Bot className="h-3 w-3 sm:h-4 sm:w-4 text-primary-foreground" />
-                  </div>
-                )}
-                
-                <Card className={cn(
-                  'max-w-[85%] sm:max-w-lg',
-                  message.type === 'user' ? 'bg-primary text-primary-foreground' : 'bg-gray-50'
-                )}>
-                  <CardContent className="p-2 sm:p-3">
-                    <p className="text-sm whitespace-pre-wrap">{message.content}</p>
-                    {message.metadata?.confidence && (
-                      <div className="mt-2 text-xs opacity-70">
-                        Confidence: {Math.round(message.metadata.confidence * 100)}%
-                      </div>
-                    )}
-                    {message.metadata?.chartSuggestions && (
-                      <div className="mt-2 flex flex-wrap gap-1">
-                        {message.metadata.chartSuggestions.map((suggestion, index) => (
-                          <Badge key={index} variant="outline" className="text-xs">
-                            {suggestion}
-                          </Badge>
-                        ))}
-                      </div>
-                    )}
-                  </CardContent>
-                </Card>
-                
-                {message.type === 'user' && (
-                  <div className="flex-shrink-0 w-6 h-6 sm:w-8 sm:h-8 bg-gray-200 rounded-full flex items-center justify-center">
-                    <User className="h-3 w-3 sm:h-4 sm:w-4 text-gray-600" />
-                  </div>
-                )}
-              </div>
+              <ChatMessage key={message.id} message={message} />
             ))}
             
             {isLoading && (

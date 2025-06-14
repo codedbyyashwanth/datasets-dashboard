@@ -1,4 +1,4 @@
-// Custom hook for AI insights functionality
+// Updated custom hook with chart support
 import { useState, useCallback } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import type { RootState } from '@/store'
@@ -31,13 +31,14 @@ export function useAskAI() {
         fileId: activeFileId,
       })
 
-      // Add AI response
+      // Add AI response with potential chart data
       dispatch(addMessage({
         type: 'ai',
         content: response.answer,
         metadata: {
           confidence: response.confidence,
           chartSuggestions: response.chartSuggestions,
+          chartData: response.chartData,
         },
       }))
     } catch (error) {

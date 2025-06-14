@@ -1,8 +1,8 @@
-// Custom hook for dashboard functionality
+// Enhanced dashboard hook with chart removal functionality
 import { useState, useEffect, useMemo } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 import type { RootState } from '@/store'
-import { setActiveFile, addChart } from '@/store/slices/dashboardSlice'
+import { setActiveFile, addChart, removeChart } from '@/store/slices/dashboardSlice'
 import { chartService } from '@/services/chartService'
 import type { DashboardMetrics, ChartConfig } from '../types'
 
@@ -22,19 +22,22 @@ export function useDashboard() {
     }
 
     const data = activeFile.data
-    const totalRevenue = data.reduce((sum, row) => sum + (row.revenue || 0), 0)
-    const totalExpenses = data.reduce((sum, row) => sum + (row.expenses || 0), 0)
+    const totalRevenue = data.reduce((sum, row) => sum + (Number(row.revenue) || 0), 0)
+    const totalExpenses = data.reduce((sum, row) => sum + (Number(row.expenses) || 0), 0)
     const profit = totalRevenue - totalExpenses
     
     // Calculate growth rate (simplified)
     const growthRate = data.length > 1 ? 
-      ((data[data.length - 1]?.revenue || 0) - (data[0]?.revenue || 0)) / (data[0]?.revenue || 1) * 100 : 0
+      ((Number(data[data.length - 1]?.revenue) || 0) - (Number(data[0]?.revenue) || 0)) / (Number(data[0]?.revenue) || 1) * 100 : 0
 
     return { totalRevenue, totalExpenses, profit, growthRate }
   }, [activeFile])
 
   const generateChart = (type: ChartConfig['type'], xAxis: string, yAxis: string) => {
-    if (!activeFile?.data) return
+    if (!activeFile?.data) {
+      console.error('No active file data available')
+      return
+    }
 
     try {
       const chartData = chartService.generateChart(activeFile.data, {
@@ -47,7 +50,7 @@ export function useDashboard() {
       const newChart: ChartConfig = {
         id: Date.now().toString(),
         type,
-        title: `${yAxis} by ${xAxis}`,
+        title: `${yAxis.replace(/_/g, ' ').toUpperCase()} by ${xAxis.replace(/_/g, ' ').toUpperCase()}`,
         xAxis,
         yAxis,
         data: chartData.data,
@@ -57,6 +60,14 @@ export function useDashboard() {
       dispatch(addChart(newChart))
     } catch (error) {
       console.error('Error generating chart:', error)
+      // You might want to show a toast notification here
+    }
+  }
+
+  const removeChartById = (chartId: string) => {
+    const chartIndex = charts.findIndex(chart => chart.id === chartId)
+    if (chartIndex !== -1) {
+      dispatch(removeChart(chartIndex))
     }
   }
 
@@ -71,6 +82,7 @@ export function useDashboard() {
     charts,
     metrics,
     generateChart,
+    removeChartById,
     setActiveFileId,
   }
 }

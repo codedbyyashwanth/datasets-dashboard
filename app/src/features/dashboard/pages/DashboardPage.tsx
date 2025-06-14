@@ -1,4 +1,4 @@
-// Responsive dashboard page
+// Updated dashboard with proper chart removal functionality
 import { useState } from 'react'
 import { Plus, BarChart3, LineChart, PieChart, ScatterChart } from 'lucide-react'
 import { Button } from '@/components/ui/button'
@@ -24,7 +24,7 @@ import { useDashboard } from '../hooks/useDashboard'
 import type { ChartConfig } from '../types'
 
 export default function DashboardPage() {
-  const { files, activeFile, activeFileId, charts, metrics, generateChart, setActiveFileId } = useDashboard()
+  const { files, activeFile, activeFileId, charts, metrics, generateChart, removeChartById, setActiveFileId } = useDashboard()
   const [isChartDialogOpen, setIsChartDialogOpen] = useState(false)
   const [selectedChartType, setSelectedChartType] = useState<ChartConfig['type']>('line')
   const [selectedXAxis, setSelectedXAxis] = useState('')
@@ -43,6 +43,10 @@ export default function DashboardPage() {
       setSelectedXAxis('')
       setSelectedYAxis('')
     }
+  }
+
+  const handleRemoveChart = (chartId: string) => {
+    removeChartById(chartId)
   }
 
   if (files.length === 0) {
@@ -186,7 +190,11 @@ export default function DashboardPage() {
           {charts.length > 0 && (
             <div className="grid gap-6 grid-cols-1 xl:grid-cols-2">
               {charts.map((chart) => (
-                <ChartDisplay key={chart.id} chart={chart} />
+                <ChartDisplay 
+                  key={chart.id} 
+                  chart={chart} 
+                  onRemove={handleRemoveChart}
+                />
               ))}
             </div>
           )}

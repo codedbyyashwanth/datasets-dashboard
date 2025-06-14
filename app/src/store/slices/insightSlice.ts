@@ -1,5 +1,11 @@
-// Redux slice for AI insights and chat
+// Updated Redux slice for AI insights with chart support
 import { createSlice, type PayloadAction } from '@reduxjs/toolkit'
+
+interface ChartData {
+  type: 'line' | 'bar' | 'pie' | 'scatter'
+  data: any[]
+  layout: any
+}
 
 interface Message {
   id: string
@@ -9,6 +15,7 @@ interface Message {
   metadata?: {
     chartSuggestions?: string[]
     confidence?: number
+    chartData?: ChartData
   }
 }
 
@@ -28,6 +35,8 @@ const initialState: InsightState = {
     "Show me expense trends over time",
     "Compare performance by region",
     "What's the average customer lifetime value?",
+    "Create a chart showing revenue by month",
+    "Visualize our profit margins by product",
   ],
 }
 
