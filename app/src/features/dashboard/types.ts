@@ -1,12 +1,16 @@
-// Type definitions for dashboard feature
+// Updated type definitions for dashboard with Recharts support
 export interface ChartConfig {
   id: string
   type: 'line' | 'bar' | 'pie' | 'scatter'
   title: string
   xAxis: string
   yAxis: string
-  data: any
-  layout: any
+  data: any[]
+  layout: {
+    title: string
+    xAxisLabel?: string
+    yAxisLabel?: string
+  }
 }
 
 export interface FilterConfig {
@@ -20,4 +24,17 @@ export interface DashboardMetrics {
   totalExpenses: number
   profit: number
   growthRate: number
+}
+
+// Recharts data format
+export interface RechartsDataPoint {
+  name: string
+  value: number
+  x?: any
+  y?: any
+}
+
+// Chart data transformation interface
+export interface ChartDataTransformer {
+  transformForRecharts: (chartData: any[]) => RechartsDataPoint[]
 }
