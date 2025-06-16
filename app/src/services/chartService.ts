@@ -1,5 +1,4 @@
 // Safer chart service with comprehensive error handling and data validation
-import { formatCurrency, formatNumber } from '../lib/utils'
 
 export interface ChartRequest {
   fileId: string

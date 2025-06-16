@@ -7,7 +7,6 @@ import { Card, CardContent } from '@/components/ui/card'
 import { Badge } from '@/components/ui/badge'
 import { useAskAI } from '../hooks/useAskAI'
 import { ChatMessage } from '@/components/ChatMessage'
-import { cn } from '@/lib/utils'
 
 export function ChatInterface() {
   const [inputValue, setInputValue] = useState('')
