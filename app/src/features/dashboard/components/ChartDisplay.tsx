@@ -12,9 +12,6 @@ interface ChartDisplayProps {
 
 export function ChartDisplay({ chart, onRemove }: ChartDisplayProps) {
   const [mounted, setMounted] = useState(false)
-  
-  // Disable Plotly completely to avoid read-only property errors
-  const useCustomCharts = true
 
   useEffect(() => {
     setMounted(true)
