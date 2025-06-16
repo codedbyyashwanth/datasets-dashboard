@@ -1,5 +1,5 @@
 // Enhanced dashboard hook with comprehensive error handling and user feedback
-import { useState, useEffect, useMemo } from 'react'
+import { useState, useMemo } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 import type { RootState } from '@/store'
 import { setActiveFile, addChart, removeChart, setError } from '@/store/slices/dashboardSlice'

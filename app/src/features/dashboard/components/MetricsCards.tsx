@@ -1,9 +1,9 @@
 // Enhanced metrics cards with mini charts using Recharts
-import { TrendingUp, TrendingDown, DollarSign, PieChart, Target, Percent } from 'lucide-react'
+import { TrendingUp, TrendingDown, DollarSign, PieChart, Target } from 'lucide-react'
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
 import { Badge } from '@/components/ui/badge'
 import { LineChart, Line, ResponsiveContainer, AreaChart, Area } from 'recharts'
-import { formatCurrency, formatNumber } from '@/lib/utils'
+import { formatCurrency } from '@/lib/utils'
 import type { DashboardMetrics } from '../types'
 
 interface MetricsCardsProps {

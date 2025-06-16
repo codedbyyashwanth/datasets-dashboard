@@ -1,4 +1,3 @@
-// src/features/dashboard/components/ChartTemplates.tsx
 // Quick chart templates for common business scenarios
 import { useState } from 'react'
 import { BarChart3, PieChart, TrendingUp, Calendar, Users, Zap } from 'lucide-react'
