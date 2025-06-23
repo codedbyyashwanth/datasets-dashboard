@@ -1,4 +1,4 @@
-// Chart display component using custom CSS/SVG charts (no Plotly dependencies)
+// Enhanced chart display component with no duplicate titles and larger charts
 import { useEffect, useState } from 'react'
 import { X, BarChart3 } from 'lucide-react'
 import { Button } from '@/components/ui/button'
@@ -17,7 +17,7 @@ export function ChartDisplay({ chart, onRemove }: ChartDisplayProps) {
     setMounted(true)
   }, [])
 
-  // Enhanced custom chart renderer (no Plotly dependencies)
+  // Enhanced custom chart renderer (no duplicate titles, bigger charts)
   const renderCustomChart = () => {
     if (!mounted) return null
     
@@ -29,10 +29,9 @@ export function ChartDisplay({ chart, onRemove }: ChartDisplayProps) {
       const maxValue = numericValues.length > 0 ? Math.max(...numericValues) : 1
       
       return (
-        <div className="p-6 bg-gradient-to-br from-white to-gray-50 rounded-lg">
-          <h4 className="text-lg font-bold mb-6 text-center text-gray-800">{chart.title}</h4>
+        <div className="p-4 bg-gradient-to-br from-white to-gray-50 rounded-lg">
           <div className="space-y-4">
-            {data.x.slice(0, 8).map((label: string, index: number) => {
+            {data.x.slice(0, 10).map((label: string, index: number) => {
               const value = data.y[index]
               const numValue = typeof value === 'number' ? value : 0
               const percentage = maxValue > 0 ? Math.max((numValue / maxValue) * 100, 2) : 0
@@ -76,10 +75,10 @@ export function ChartDisplay({ chart, onRemove }: ChartDisplayProps) {
       const minValue = numericValues.length > 0 ? Math.min(...numericValues) : 0
       const range = maxValue - minValue || 1
       
-      // Calculate actual pixel coordinates
-      const chartWidth = 400
-      const chartHeight = 200
-      const padding = 40
+      // Calculate actual pixel coordinates - BIGGER CHARTS
+      const chartWidth = 500
+      const chartHeight = 300
+      const padding = 50
       const drawWidth = chartWidth - (padding * 2)
       const drawHeight = chartHeight - (padding * 2)
       
@@ -91,8 +90,7 @@ export function ChartDisplay({ chart, onRemove }: ChartDisplayProps) {
       }).join(' ')
       
       return (
-        <div className="p-6 bg-gradient-to-br from-white to-gray-50 rounded-lg">
-          <h4 className="text-lg font-bold mb-6 text-center text-gray-800">{chart.title}</h4>
+        <div className="p-4 bg-gradient-to-br from-white to-gray-50 rounded-lg">
           <div className="relative flex justify-center">
             <svg width={chartWidth} height={chartHeight} className="border border-gray-300 rounded-lg bg-white shadow-sm">
               {/* Grid lines */}
@@ -219,10 +217,9 @@ export function ChartDisplay({ chart, onRemove }: ChartDisplayProps) {
       const total = data.values.reduce((sum: number, val: number) => sum + (typeof val === 'number' ? val : 0), 0)
       
       return (
-        <div className="p-6 bg-gradient-to-br from-white to-gray-50 rounded-lg">
-          <h4 className="text-lg font-bold mb-6 text-center text-gray-800">{chart.title}</h4>
+        <div className="p-4 bg-gradient-to-br from-white to-gray-50 rounded-lg">
           <div className="space-y-3">
-            {data.labels.slice(0, 8).map((label: string, index: number) => {
+            {data.labels.slice(0, 10).map((label: string, index: number) => {
               const value = data.values[index]
               const numValue = typeof value === 'number' ? value : 0
               const percentage = total > 0 ? (numValue / total) * 100 : 0
@@ -264,8 +261,7 @@ export function ChartDisplay({ chart, onRemove }: ChartDisplayProps) {
       
       if (xValues.length === 0 || yValues.length === 0) {
         return (
-          <div className="p-6 bg-gradient-to-br from-white to-gray-50 rounded-lg">
-            <h4 className="text-lg font-bold mb-6 text-center text-gray-800">{chart.title}</h4>
+          <div className="p-4 bg-gradient-to-br from-white to-gray-50 rounded-lg">
             <div className="text-center text-gray-500">
               <p>No numeric data available for scatter plot</p>
             </div>
@@ -280,15 +276,15 @@ export function ChartDisplay({ chart, onRemove }: ChartDisplayProps) {
       const rangeX = maxX - minX || 1
       const rangeY = maxY - minY || 1
       
-      const chartWidth = 400
-      const chartHeight = 200
-      const padding = 40
+      // BIGGER SCATTER PLOT
+      const chartWidth = 500
+      const chartHeight = 300
+      const padding = 50
       const drawWidth = chartWidth - (padding * 2)
       const drawHeight = chartHeight - (padding * 2)
       
       return (
-        <div className="p-6 bg-gradient-to-br from-white to-gray-50 rounded-lg">
-          <h4 className="text-lg font-bold mb-6 text-center text-gray-800">{chart.title}</h4>
+        <div className="p-4 bg-gradient-to-br from-white to-gray-50 rounded-lg">
           <div className="relative flex justify-center">
             <svg width={chartWidth} height={chartHeight} className="border border-gray-300 rounded-lg bg-white shadow-sm">
               {/* Grid lines */}
@@ -371,7 +367,7 @@ export function ChartDisplay({ chart, onRemove }: ChartDisplayProps) {
         </div>
       </CardHeader>
       <CardContent className="pt-0">
-        <div className="min-h-[280px]">
+        <div className="min-h-[360px]">
           {renderCustomChart()}
         </div>
       </CardContent>
